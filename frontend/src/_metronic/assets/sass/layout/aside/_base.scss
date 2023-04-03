@@ -1,0 +1,235 @@
+//
+// Aside Default
+//
+
+// General mode(all devices)
+.aside {
+  display: flex;
+  flex-direction: column;
+  box-shadow: get($aside-config, box-shadow);
+  padding: 0;
+
+  // Custom button
+  .btn-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+
+    .btn-label {
+      transition: opacity get($aside-config, transition-speed) ease;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      opacity: 1;
+    }
+
+    .btn-icon {
+      display: inline-block;
+      transition: opacity get($aside-config, transition-speed) ease;
+      overflow: hidden;
+      opacity: 0;
+      margin: 0;
+      width: 0;
+    }
+  }
+
+  // Dark theme
+  &.aside-dark {
+    background-color: get($aside-config, bg-color);
+
+    // Logo
+    .aside-logo {
+      background-color: #dfe6ec;
+    }
+
+    // Aside toggle
+    .aside-toggle {
+      color: #494b74;
+    }
+
+    // Separator
+    .separator {
+      border-bottom-color: #282a3d;
+    }
+
+    // Custom button
+    .btn-custom {
+      //$color, $icon-color, $border-color, $bg-color, $color-active, $icon-color-active, $border-color-active, $bg-color-active
+      @include button-custom-variant(
+        #b5b5c3,
+        null,
+        null,
+        rgba(63, 66, 84, 0.35),
+        #b5b5c3,
+        null,
+        null,
+        rgba(63, 66, 84, 0.35)
+      );
+
+      .btn-icon {
+        &,
+        i,
+        .svg-icon {
+          color: #b5b5c3;
+        }
+      }
+    }
+  }
+
+  // Light theme
+  &.aside-light {
+    background-color: $white;
+  }
+}
+
+// Desktop mode
+@include media-breakpoint-up(lg) {
+  .aside {
+    width: get($aside-config, width);
+    transition: width get($aside-config, transition-speed) ease;
+
+    // Logo
+    .aside-logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 55px;
+      padding: 0 get($aside-config, padding-x);
+    }
+
+    // Aside menu
+    .aside-menu {
+      width: get($aside-config, width);
+    }
+
+    .logout-icon{
+      svg{
+        &:hover{
+         fill : red
+        }
+      }
+
+    }
+.aside-footer{
+  &:hover{
+    .btn-label{
+        color: #ffffff;
+    }
+     .svg-icon{
+      path{
+        fill:#009ef7;
+      }
+      rect{
+        fill:#009ef7;
+      }
+    //   //background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8ZyBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4NCiAgICAgICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ii8+DQogICAgICAgIDxwYXRoIGQ9Ik0xNC4wMDY5NDMxLDcuMDA2MDcyNTggQzEzLjQ1NDY1ODQsNy4wMDYwNzI1OCAxMy4wMDY5NDMxLDYuNTU4NTUxNTMgMTMuMDA2OTQzMSw2LjAwNjUwNjM0IEMxMy4wMDY5NDMxLDUuNDU0NDYxMTQgMTMuNDU0NjU4NCw1LjAwNjk0MDA5IDE0LjAwNjk0MzEsNS4wMDY5NDAwOSBMMTUuMDA2OTQzMSw1LjAwNjk0MDA5IEMxNy4yMTYwODIxLDUuMDA2OTQwMDkgMTkuMDA2OTQzMSw2Ljc5NzAyNDMgMTkuMDA2OTQzMSw5LjAwNTIwNTA3IEwxOS4wMDY5NDMxLDE1LjAwMTczNSBDMTkuMDA2OTQzMSwxNy4yMDk5MTU4IDE3LjIxNjA4MjEsMTkgMTUuMDA2OTQzMSwxOSBMMy4wMDY5NDMxMSwxOSBDMC43OTc4MDQxMDYsMTkgLTAuOTkzMDU2ODk1LDE3LjIwOTkxNTggLTAuOTkzMDU2ODk1LDE1LjAwMTczNSBMLTAuOTkzMDU2ODk1LDguOTk4MjY0OTggQy0wLjk5MzA1Njg5NSw2Ljc5MDA4NDIgMC43OTc4MDQxMDYsNSAzLjAwNjk0MzExLDUgTDQuMDA2OTQ3OTMsNSBDNC41NTkyMzI2OCw1IDUuMDA2OTQ3OTMsNS40NDc1MjEwNSA1LjAwNjk0NzkzLDUuOTk5NTY2MjQgQzUuMDA2OTQ3OTMsNi41NTE2MTE0NCA0LjU1OTIzMjY4LDYuOTk5MTMyNDkgNC4wMDY5NDc5Myw2Ljk5OTEzMjQ5IEwzLjAwNjk0MzExLDYuOTk5MTMyNDkgQzEuOTAyMzczNjEsNi45OTkxMzI0OSAxLjAwNjk0MzExLDcuODk0MTc0NTkgMS4wMDY5NDMxMSw4Ljk5ODI2NDk4IEwxLjAwNjk0MzExLDE1LjAwMTczNSBDMS4wMDY5NDMxMSwxNi4xMDU4MjU0IDEuOTAyMzczNjEsMTcuMDAwODY3NSAzLjAwNjk0MzExLDE3LjAwMDg2NzUgTDE1LjAwNjk0MzEsMTcuMDAwODY3NSBDMTYuMTExNTEyNiwxNy4wMDA4Njc1IDE3LjAwNjk0MzEsMTYuMTA1ODI1NCAxNy4wMDY5NDMxLDE1LjAwMTczNSBMMTcuMDA2OTQzMSw5LjAwNTIwNTA3IEMxNy4wMDY5NDMxLDcuOTAxMTE0NjggMTYuMTExNTEyNiw3LjAwNjA3MjU4IDE1LjAwNjk0MzEsNy4wMDYwNzI1OCBMMTQuMDA2OTQzMSw3LjAwNjA3MjU4IFoiIGZpbGw9IiMwMDllZjciIGZpbGwtcnVsZT0ibm9uemVybyIgb3BhY2l0eT0iMC4zIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5LjAwNjk0MywgMTIuMDAwMDAwKSBzY2FsZSgtMSwgMSkgcm90YXRlKC05MC4wMDAwMDApIHRyYW5zbGF0ZSgtOS4wMDY5NDMsIC0xMi4wMDAwMDApICIvPg0KICAgICAgICA8cmVjdCBmaWxsPSIjMDA5ZWY3IiBvcGFjaXR5PSIwLjMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE0LjAwMDAwMCwgMTIuMDAwMDAwKSByb3RhdGUoLTI3MC4wMDAwMDApIHRyYW5zbGF0ZSgtMTQuMDAwMDAwLCAtMTIuMDAwMDAwKSAiIHg9IjEzIiB5PSI2IiB3aWR0aD0iMiIgaGVpZ2h0PSIxMiIgcng9IjEiLz4NCiAgICAgICAgPHBhdGggZD0iTTIxLjc5Mjg5MzIsOS43OTI4OTMyMiBDMjIuMTgzNDE3NSw5LjQwMjM2ODkzIDIyLjgxNjU4MjUsOS40MDIzNjg5MyAyMy4yMDcxMDY4LDkuNzkyODkzMjIgQzIzLjU5NzYzMTEsMTAuMTgzNDE3NSAyMy41OTc2MzExLDEwLjgxNjU4MjUgMjMuMjA3MTA2OCwxMS4yMDcxMDY4IEwyMC4yMDcxMDY4LDE0LjIwNzEwNjggQzE5LjgxNjU4MjUsMTQuNTk3NjMxMSAxOS4xODM0MTc1LDE0LjU5NzYzMTEgMTguNzkyODkzMiwxNC4yMDcxMDY4IEwxNS43OTI4OTMyLDExLjIwNzEwNjggQzE1LjQwMjM2ODksMTAuODE2NTgyNSAxNS40MDIzNjg5LDEwLjE4MzQxNzUgMTUuNzkyODkzMiw5Ljc5Mjg5MzIyIEMxNi4xODM0MTc1LDkuNDAyMzY4OTMgMTYuODE2NTgyNSw5LjQwMjM2ODkzIDE3LjIwNzEwNjgsOS43OTI4OTMyMiBMMTkuNSwxMi4wODU3ODY0IEwyMS43OTI4OTMyLDkuNzkyODkzMjIgWiIgZmlsbD0iIzAwOWVmNyIgZmlsbC1ydWxlPSJub256ZXJvIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxOS41MDAwMDAsIDEyLjAwMDAwMCkgcm90YXRlKC05MC4wMDAwMDApIHRyYW5zbGF0ZSgtMTkuNTAwMDAwLCAtMTIuMDAwMDAwKSAiLz4NCiAgICA8L2c+DQo8L3N2Zz4NCg==)
+       }
+    }
+}
+   
+    // Fixed aside mode
+    .aside-fixed & {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: get($aside-config, z-index);
+      overflow: hidden;
+    }
+
+    // Static aside mode
+    .aside-static & {
+      position: relative;
+      z-index: 1;
+    }
+
+    // Minimize aside mode
+    [data-kt-aside-minimize='on'] & {
+      width: get($aside-config, minimized-width);
+      transition: width get($aside-config, transition-speed) ease;
+
+      // Logo
+      .aside-logo {
+        .logo-default {
+          display: inline-block;
+        }
+
+        .logo-minimize {
+          display: none;
+        }
+      }
+
+      // Hoverable
+      &.aside-hoverable:hover:not(.animating) {
+        transition: width get($aside-config, transition-speed) ease;
+        width: get($aside-config, width);
+        box-shadow: get($aside-config, minimized-hover-box-shadow);
+      }
+
+      // Not hovered mode
+      &:not(.aside-hoverable),
+      &:not(:hover) {
+        // Logo
+        .aside-logo {
+          justify-content: center;
+
+          .logo {
+            display: none;
+          }
+
+          .logo-default {
+            display: none;
+          }
+
+          .logo-minimize {
+            display: inline-block;
+          }
+        }
+
+        // Menu
+        .aside-menu {
+          .menu-content,
+          .menu-title {
+            opacity: 0;
+            transition: opacity get($aside-config, transition-speed) ease;
+          }
+
+          .menu-item.show > .menu-sub {
+            height: 0;
+            overflow: hidden;
+            transition: height get($aside-config, transition-speed) ease;
+          }
+        }
+
+        // Custom button
+        .btn-custom {
+          .btn-label {
+            width: 0;
+            opacity: 0;
+            transition: opacity get($aside-config, transition-speed) ease;
+          }
+
+          .btn-icon {
+            width: auto;
+            opacity: 1;
+            transition: opacity get($aside-config, transition-speed) ease;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tablet & mobile modes
+@include media-breakpoint-down(lg) {
+  .aside {
+    display: none;
+
+    // Logo
+    .aside-logo {
+      display: none;
+    }
+  }
+}
